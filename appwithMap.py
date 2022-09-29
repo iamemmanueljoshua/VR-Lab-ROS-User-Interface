@@ -139,7 +139,7 @@ PAGE="""\
         -->
     
     	<script
-     	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"defer>
+     	    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTQNx7Gc7J1Llbr2ZSfFNZCWZZXl1lZVk&callback=initMap&v=weekly"defer>
    	</script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
@@ -253,7 +253,7 @@ PAGE="""\
                 // determine robot address automatically
                 // robot_IP = location.hostname;
                 // set robot address statically
-                robot_IP = "172.24.214.149";
+                robot_IP = "172.24.202.76";
                 // // Init handle for rosbridge_websocket
                 ros = new ROSLIB.Ros({
                     url: "ws://" + robot_IP + ":9090"
