@@ -108,7 +108,31 @@ PAGE="""\
             var manager;
             var teleop;
             var ros;
-            function moveAction(linear, angular) {
+            
+	    window.onload = function () {
+                // determine robot address automatically
+                // robot_IP = location.hostname;
+                // set robot address statically
+                robot_IP = "172.24.214.149";
+                // // Init handle for rosbridge_websocket
+                ros = new ROSLIB.Ros({
+                    url: "ws://" + robot_IP + ":9090"
+                });
+                ros.on('connection', function () {
+                    document.getElementById("status").innerHTML = "Connected";
+                });
+                ros.on('error', function (error) {
+                    document.getElementById("status").innerHTML = "Error";
+                });
+                ros.on('close', function () {
+                    document.getElementById("status").innerHTML = "Closed";
+                });
+                initVelocityPublisher();
+                createJoystick();
+                initTeleopKeyboard();
+            }
+	    
+	    function moveAction(linear, angular) {
                 if (linear !== undefined && angular !== undefined) {
                     twist.linear.x = linear;
                     twist.angular.z = angular;
@@ -202,28 +226,7 @@ PAGE="""\
                     });
                 }
             }
-            window.onload = function () {
-                // determine robot address automatically
-                // robot_IP = location.hostname;
-                // set robot address statically
-                robot_IP = "172.24.214.149";
-                // // Init handle for rosbridge_websocket
-                ros = new ROSLIB.Ros({
-                    url: "ws://" + robot_IP + ":9090"
-                });
-                ros.on('connection', function () {
-                    document.getElementById("status").innerHTML = "Connected";
-                });
-                ros.on('error', function (error) {
-                    document.getElementById("status").innerHTML = "Error";
-                });
-                ros.on('close', function () {
-                    document.getElementById("status").innerHTML = "Closed";
-                });
-                initVelocityPublisher();
-                createJoystick();
-                initTeleopKeyboard();
-            }
+            
 	    </script>
   </body>
 </html>
